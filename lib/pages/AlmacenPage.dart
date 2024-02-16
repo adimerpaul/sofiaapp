@@ -1,5 +1,6 @@
 import 'package:appsofia/models/Almacen.dart';
 import 'package:appsofia/models/User.dart';
+import 'package:appsofia/pages/AlmacenAlert.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -15,9 +16,8 @@ class _AlmacenPageState extends State<AlmacenPage> {
   var user = User(id: 0);
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     getDatos();
+    super.initState();
   }
   void getDatos() async {
     var almacenBox = await Hive.openBox<Almacen>('almacen');
@@ -100,27 +100,27 @@ class _AlmacenPageState extends State<AlmacenPage> {
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w900, // Aquí puedes ajustar el valor de FontWeight
-                          fontSize: 10,
+                          fontSize: 11,
                         ),
                       ),
                       Text('${user.name}',
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 10,
+                          fontSize: 11,
                         ),
                       ),
                       Text(' Codigo: ',
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w900, // Aquí puedes ajustar el valor de FontWeight
-                          fontSize: 10,
+                          fontSize: 11,
                         ),
                       ),
                       Text(
                         almacen.length > 0 ? almacen[0].codigo.toString() : '',
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 10,
+                          fontSize: 11,
                         ),
                       ),
                     ],
@@ -148,58 +148,84 @@ class _AlmacenPageState extends State<AlmacenPage> {
             child: ListView.builder(
               itemCount: almacen.length,
               itemBuilder: (context, index) {
-                return Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              Text(
-                                (index+1).toString()+' '+almacen[index].producto!.trim()+ ' ' ,style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
-                                fontSize: 10,
-                              ),),
-                              Container(
-                                padding: EdgeInsets.symmetric(horizontal: 3, vertical: 2), // Ajusta el padding del Container
-                                decoration: BoxDecoration(
-                                  color: almacen[index].estado == 'PENDIENTE' ? Colors.red : Colors.green, // Establece el color de fondo del Container según el estado
-                                  borderRadius: BorderRadius.circular(3), // Ajusta el radio de borde del Container
-                                ),
-                                child: Text(
-                                  almacen[index].estado!.trim(),
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10, // Ajusta el tamaño del texto del Chip
+                return GestureDetector(
+                  onTap: () {
+                    print(almacen[index].id);
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlmacenAlert(almacen: almacen[index]);
+                      },
+                    );
+                  },
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                Text(
+                                  (index+1).toString()+' '+almacen[index].producto!.trim()+ ' ' ,style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
+                                  fontSize: 11,
+                                ),),
+                                Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 3, vertical: 2), // Ajusta el padding del Container
+                                  decoration: BoxDecoration(
+                                    color: almacen[index].estado == 'PENDIENTE' ? Colors.red : Colors.green, // Establece el color de fondo del Container según el estado
+                                    borderRadius: BorderRadius.circular(3), // Ajusta el radio de borde del Container
                                   ),
+                                  child: Text(
+                                    almacen[index].estado!.trim(),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 11, // Ajusta el tamaño del texto del Chip
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Text('Saldo: '),
+                              Text(almacen[index].saldo.toString(),style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w900, // Aquí puedes ajustar el valor de FontWeight
+                                fontSize: 11,
+                              ),),
+                              Text(' Vencimiento: '),
+                              Text(almacen[index].vencimiento.toString().substring(0,10),style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w900, // Aquí puedes ajustar el valor de FontWeight
+                                fontSize: 11,
+                              ),),
+                              Text(' Cantidad: '),
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: int.parse(almacen[index].cantidad.toString()) == int.parse(almacen[index].saldo.toString()) ? Colors.green : Colors.red, // Establece el color de fondo del Container según la cantidad (saldo y cantidad iguales: verde, saldo y cantidad diferentes: rojo
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: Text(almacen[index].cantidad.toString(),style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w900, // Aquí puedes ajustar el valor de FontWeight
+                                    fontSize: 11,
+                                  ),),
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                        Row(
-                          children: [
-                            Text('Saldo: '),
-                            Text(almacen[index].saldo.toString(),style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w900, // Aquí puedes ajustar el valor de FontWeight
-                              fontSize: 10,
-                            ),),
-                            Text(' Vencimiento: '),
-                            Text(almacen[index].vencimiento.toString().substring(0,10),style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w900, // Aquí puedes ajustar el valor de FontWeight
-                              fontSize: 10,
-                            ),),
-                          ],
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );
