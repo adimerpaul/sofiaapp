@@ -52,7 +52,20 @@ class ImportService {
           registro: DateTime.parse(almacen['registro']),
           vencimiento: DateTime.parse(almacen['vencimiento']),
           grupo: almacen['grupo'],
-          estado: 'IMPORTADO'
+          estado: 'PENDIENTE',
+          detalle: [
+            {'cantidad': '', 'vencimiento': ''},
+            {'cantidad': '', 'vencimiento': ''},
+            {'cantidad': '', 'vencimiento': ''},
+            {'cantidad': '', 'vencimiento': ''},
+            {'cantidad': '', 'vencimiento': ''},
+            {'cantidad': '', 'vencimiento': ''},
+            {'cantidad': '', 'vencimiento': ''},
+            {'cantidad': '', 'vencimiento': ''},
+            {'cantidad': '', 'vencimiento': ''},
+            {'cantidad': '', 'vencimiento': ''},
+          ],
+          cantidad: 0
         ));
       });
     }

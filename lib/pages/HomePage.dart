@@ -92,11 +92,11 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           Text(
-            'Importacion de Datos',
+            'Almacen sofia',
             style: TextStyle(
               color: Colors.red,
-              fontWeight: FontWeight.w900, // Aquí puedes ajustar el valor de FontWeight
-              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
             ),
           ),
           SizedBox(

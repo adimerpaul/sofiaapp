@@ -27,13 +27,15 @@ class AlmacenAdapter extends TypeAdapter<Almacen> {
       vencimiento: fields[7] as DateTime?,
       grupo: fields[8] as String?,
       estado: fields[9] as String?,
+      cantidad: fields[10] as int?,
+      detalle: (fields[11] as List?)?.cast<dynamic>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, Almacen obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -53,7 +55,11 @@ class AlmacenAdapter extends TypeAdapter<Almacen> {
       ..writeByte(8)
       ..write(obj.grupo)
       ..writeByte(9)
-      ..write(obj.estado);
+      ..write(obj.estado)
+      ..writeByte(10)
+      ..write(obj.cantidad)
+      ..writeByte(11)
+      ..write(obj.detalle);
   }
 
   @override
