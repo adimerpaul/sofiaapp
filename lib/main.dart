@@ -1,3 +1,4 @@
+import 'package:appsofia/models/Almacen.dart';
 import 'package:appsofia/models/User.dart';
 import 'package:appsofia/pages/HomePage.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ Future<void> main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(UserAdapter());
+  Hive.registerAdapter(AlmacenAdapter());
 
   runApp(const MyApp());
 }

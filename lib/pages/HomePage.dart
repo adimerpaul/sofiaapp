@@ -1,9 +1,13 @@
+import 'package:appsofia/models/Almacen.dart';
 import 'package:appsofia/models/User.dart';
+import 'package:appsofia/pages/AlmacenPage.dart';
 import 'package:appsofia/services/ImportService.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hive/hive.dart';
+import 'package:appsofia/addons/SnackbarHelper.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   final _codigo = TextEditingController();
   final _user = TextEditingController();
   var _users = [];
+  var _loading = false;
   @override
   void initState() {
     super.initState();
@@ -26,15 +31,49 @@ class _HomePageState extends State<HomePage> {
   void getUsers() async {
     await ImportService().users();
     var usersBox = await Hive.openBox<User>('users');
-    // usersBox.values.forEach((user) {
-    //   print(user.name);
-    // });
     setState(() {
       _users = usersBox.values.toList();
-      // _users.forEach((user) {
-      //   print(user.name);
-      // });
     });
+    var almacenBox = await Hive.openBox<Almacen>('almacen');
+    if(almacenBox.isNotEmpty){
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => AlmacenPage()),
+      );
+    }
+  }
+  Future importData() async {
+    if (_fechaController.text.isEmpty || _codigo.text.isEmpty || _user.text.isEmpty) {
+      showErrorSnackBar(context, 'Todos los campos son requeridos');
+      return;
+    }
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      showErrorSnackBar(context, 'No hay conexión a internet');
+      return;
+    }
+    setState(() {
+      _loading = true;
+    });
+    print('fecha: ${_fechaController.text}');
+    print('codigo: ${_codigo.text}');
+    print('user: ${_user.text}');
+    await ImportService().importData(_fechaController.text, _codigo.text, _user.text);
+    setState(() {
+      _loading = false;
+    });
+    var almacenBox = await Hive.openBox<Almacen>('almacen');
+    if (almacenBox.isNotEmpty) {
+      showSuccessSnackBar(context, 'Datos importados correctamente');
+      if(almacenBox.length > 0){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AlmacenPage()),
+        );
+      }
+    } else {
+      showErrorSnackBar(context, 'No se encontraron datos');
+    }
   }
 
   @override
@@ -122,17 +161,8 @@ class _HomePageState extends State<HomePage> {
           Padding(
               padding: const EdgeInsets.all(10.0),
               child: ElevatedButton(
-                onPressed: () {
-                  // print('fecha: ${_fecha.currentState?.value}');
-                  // if (_fecha.currentState!.saveAndValidate() &&
-                  //     _codigo.currentState!.saveAndValidate() &&
-                  //     _user.currentState!.saveAndValidate()) {
-                  //   print(_fecha.currentState!.value);
-                  //   print(_codigo.currentState!.value);
-                  //   print(_user.currentState!.value);
-                  // }
-                },
-                child: const Text('Importar Datos'),
+                onPressed: _loading ? null : importData,
+                child: _loading ? CircularProgressIndicator() : Text('Importar'),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.red,
                   onPrimary: Colors.white,
