@@ -28,7 +28,7 @@ class AlmacenAdapter extends TypeAdapter<Almacen> {
       grupo: fields[8] as String?,
       estado: fields[9] as String?,
       cantidad: fields[10] as int?,
-      detalle: (fields[11] as List?)?.cast<dynamic>(),
+      detalle: (fields[11] as List?)?.cast<Detalle>(),
     );
   }
 

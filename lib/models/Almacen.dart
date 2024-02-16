@@ -1,3 +1,4 @@
+import 'package:appsofia/models/Detalle.dart';
 import 'package:hive/hive.dart';
 part 'Almacen.g.dart';
 
@@ -26,7 +27,7 @@ class Almacen {
   @HiveField(10)
   int? cantidad;
   @HiveField(11)
-  List<dynamic>? detalle;
+  List<Detalle>? detalle;
 
   Almacen({required this.id, this.codigo, this.codigoProducto, this.producto, this.unidad, this.saldo, this.registro, this.vencimiento, this.grupo, this.estado, this.cantidad, this.detalle});
 }

@@ -1,4 +1,5 @@
 import 'package:appsofia/models/Almacen.dart';
+import 'package:appsofia/models/Detalle.dart';
 import 'package:appsofia/models/User.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive/hive.dart';
@@ -54,16 +55,16 @@ class ImportService {
           grupo: almacen['grupo'],
           estado: 'PENDIENTE',
           detalle: [
-            {'cantidad': '', 'vencimiento': ''},
-            {'cantidad': '', 'vencimiento': ''},
-            {'cantidad': '', 'vencimiento': ''},
-            {'cantidad': '', 'vencimiento': ''},
-            {'cantidad': '', 'vencimiento': ''},
-            {'cantidad': '', 'vencimiento': ''},
-            {'cantidad': '', 'vencimiento': ''},
-            {'cantidad': '', 'vencimiento': ''},
-            {'cantidad': '', 'vencimiento': ''},
-            {'cantidad': '', 'vencimiento': ''},
+            Detalle(cantidad: '', vencimiento: ''),
+            Detalle(cantidad: '', vencimiento: ''),
+            Detalle(cantidad: '', vencimiento: ''),
+            Detalle(cantidad: '', vencimiento: ''),
+            Detalle(cantidad: '', vencimiento: ''),
+            Detalle(cantidad: '', vencimiento: ''),
+            Detalle(cantidad: '', vencimiento: ''),
+            Detalle(cantidad: '', vencimiento: ''),
+            Detalle(cantidad: '', vencimiento: ''),
+            Detalle(cantidad: '', vencimiento: ''),
           ],
           cantidad: 0
         ));
