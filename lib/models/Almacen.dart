@@ -30,4 +30,21 @@ class Almacen {
   List<Detalle>? detalle;
 
   Almacen({required this.id, this.codigo, this.codigoProducto, this.producto, this.unidad, this.saldo, this.registro, this.vencimiento, this.grupo, this.estado, this.cantidad, this.detalle});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'codigo': codigo,
+      'codigoProducto': codigoProducto,
+      'producto': producto,
+      'unidad': unidad,
+      'saldo': saldo,
+      'registro': registro?.toIso8601String(),
+      'vencimiento': vencimiento?.toIso8601String(),
+      'grupo': grupo,
+      'estado': estado,
+      'cantidad': cantidad,
+      'detalle': detalle?.map((detalle) => detalle.toJson()).toList(),
+    };
+  }
 }

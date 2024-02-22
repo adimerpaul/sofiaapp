@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:appsofia/models/Almacen.dart';
 import 'package:appsofia/models/User.dart';
 import 'package:appsofia/pages/AlmacenAlert.dart';
@@ -24,6 +26,7 @@ class _AlmacenPageState extends State<AlmacenPage> {
     var userBox = await Hive.openBox<User>('user');
     setState(() {
       almacen = almacenBox.values.toList();
+      // print(jsonEncode(almacen));
       user = User(id: userBox.getAt(0)!.id, name: userBox.getAt(0)!.name);
     });
     // print(user.name);
@@ -150,11 +153,16 @@ class _AlmacenPageState extends State<AlmacenPage> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    print(almacen[index].id);
+                    // print(almacen[index].id);
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return AlmacenAlert(almacen: almacen[index]);
+                        return AlmacenAlert(
+                          almacen: almacen[index],
+                          onClick: () {
+                            getDatos();
+                          },
+                        );
                       },
                     );
                   },

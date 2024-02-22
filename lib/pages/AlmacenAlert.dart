@@ -1,14 +1,20 @@
+import 'dart:convert';
+
+import 'package:appsofia/models/Almacen.dart';
 import 'package:appsofia/models/Detalle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:hive/hive.dart';
 
 class AlmacenAlert extends StatefulWidget {
   final almacen;
+  final VoidCallback? onClick;
 
   const AlmacenAlert({
     super.key,
     this.almacen,
+    this.onClick,
   });
 
   @override
@@ -44,8 +50,8 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
     super.initState();
   }
   void llenado() {
-    cantidad1.text = widget.almacen.detalle.length > 0 ? widget.almacen.detalle[0].cantidad.toString() : '';
-    vencimiento1.text = widget.almacen.detalle.length > 0 ? widget.almacen.detalle[0].vencimiento.toString() : '';
+    cantidad1.text = widget.almacen.detalle[0].cantidad.toString();
+    vencimiento1.text = widget.almacen.detalle[0].vencimiento.toString();
     cantidad2.text = widget.almacen.detalle.length > 1 ? widget.almacen.detalle[1].cantidad.toString() : '';
     vencimiento2.text = widget.almacen.detalle.length > 1 ? widget.almacen.detalle[1].vencimiento.toString() : '';
     cantidad3.text = widget.almacen.detalle.length > 2 ? widget.almacen.detalle[2].cantidad.toString() : '';
@@ -203,7 +209,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderTextField(
                     name: 'cantidad1',
+                    // controller: cantidad1,
                     decoration: InputDecoration(labelText: 'Cantidad1'),
+                    initialValue: cantidad1.text,
                     onChanged: (value) {
                       setState(() {
                         cantidad1.text = value!;
@@ -220,14 +228,15 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderDateTimePicker(
                     name: 'date',
-                    controller: vencimiento1,
+                    // controller: vencimiento1,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha1'),
-                    // initialValue: DateTime.now(),
+                    initialValue: vencimiento1.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento1.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
                         vencimiento1.text = value.toString();
+                        print(vencimiento1.text);
                         calcularTotal();
                       });
                     },
@@ -240,7 +249,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderTextField(
                     name: 'cantidad2',
+                    // controller: cantidad2,
                     decoration: InputDecoration(labelText: 'Cantidad2'),
+                    initialValue: cantidad2.text,
                     onChanged: (value) {
                       setState(() {
                         cantidad2.text = value!;
@@ -257,10 +268,10 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderDateTimePicker(
                     name: 'date',
-                    controller: vencimiento2,
+                    // controller: vencimiento2,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha2'),
-                    // initialValue: DateTime.now(),
+                    initialValue: vencimiento2.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento2.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -277,7 +288,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderTextField(
                     name: 'cantidad3',
+                    // controller: cantidad3,
                     decoration: InputDecoration(labelText: 'Cantidad3'),
+                    initialValue: cantidad3.text,
                     onChanged: (value) {
                       setState(() {
                         cantidad3.text = value!;
@@ -294,10 +307,10 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderDateTimePicker(
                     name: 'date',
-                    controller: vencimiento3,
+                    // controller: vencimiento3,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha3'),
-                    // initialValue: DateTime.now(),
+                    initialValue: vencimiento3.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento3.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -314,7 +327,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderTextField(
                     name: 'cantidad4',
+                    // controller: cantidad4,
                     decoration: InputDecoration(labelText: 'Cantidad4'),
+                    initialValue: cantidad4.text,
                     onChanged: (value) {
                       setState(() {
                         cantidad4.text = value!;
@@ -331,10 +346,10 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderDateTimePicker(
                     name: 'date',
-                    controller: vencimiento4,
+                    // controller: vencimiento4,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha4'),
-                    // initialValue: DateTime.now(),
+                    initialValue: vencimiento4.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento4.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -351,7 +366,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderTextField(
                     name: 'cantidad5',
+                    // controller: cantidad5,
                     decoration: InputDecoration(labelText: 'Cantidad5'),
+                    initialValue: cantidad5.text,
                     onChanged: (value) {
                       setState(() {
                         cantidad5.text = value!;
@@ -368,10 +385,10 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderDateTimePicker(
                     name: 'date',
-                    controller: vencimiento5,
+                    // controller: vencimiento5,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha5'),
-                    // initialValue: DateTime.now(),
+                    initialValue: vencimiento5.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento5.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -388,7 +405,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderTextField(
                     name: 'cantidad6',
+                    // controller: cantidad6,
                     decoration: InputDecoration(labelText: 'Cantidad6'),
+                    initialValue: cantidad6.text,
                     onChanged: (value) {
                       setState(() {
                         cantidad6.text = value!;
@@ -405,10 +424,10 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderDateTimePicker(
                     name: 'date',
-                    controller: vencimiento6,
+                    // controller: vencimiento6,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha6'),
-                    // initialValue: DateTime.now(),
+                    initialValue: vencimiento6.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento6.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -425,7 +444,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderTextField(
                     name: 'cantidad7',
+                    // controller: cantidad7,
                     decoration: InputDecoration(labelText: 'Cantidad7'),
+                    initialValue: cantidad7.text,
                     onChanged: (value) {
                       setState(() {
                         cantidad7.text = value!;
@@ -442,10 +463,10 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderDateTimePicker(
                     name: 'date',
-                    controller: vencimiento7,
+                    // controller: vencimiento7,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha7'),
-                    // initialValue: DateTime.now(),
+                    initialValue: vencimiento7.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento7.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -462,7 +483,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderTextField(
                     name: 'cantidad8',
+                    // controller: cantidad8,
                     decoration: InputDecoration(labelText: 'Cantidad8'),
+                    initialValue: cantidad8.text,
                     onChanged: (value) {
                       setState(() {
                         cantidad8.text = value!;
@@ -479,10 +502,10 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderDateTimePicker(
                     name: 'date',
-                    controller: vencimiento8,
+                    // controller: vencimiento8,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha8'),
-                    // initialValue: DateTime.now(),
+                    initialValue: vencimiento8.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento8.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -499,7 +522,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderTextField(
                     name: 'cantidad9',
+                    // controller: cantidad9,
                     decoration: InputDecoration(labelText: 'Cantidad9'),
+                    initialValue: cantidad9.text,
                     onChanged: (value) {
                       setState(() {
                         cantidad9.text = value!;
@@ -516,10 +541,10 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderDateTimePicker(
                     name: 'date',
-                    controller: vencimiento9,
+                    // controller: vencimiento9,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha9'),
-                    // initialValue: DateTime.now(),
+                    initialValue: vencimiento9.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento9.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -536,7 +561,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderTextField(
                     name: 'cantidad10',
+                    // controller: cantidad10,
                     decoration: InputDecoration(labelText: 'Cantidad10'),
+                    initialValue: cantidad10.text,
                     onChanged: (value) {
                       setState(() {
                         cantidad10.text = value!;
@@ -553,10 +580,10 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 Expanded(
                   child: FormBuilderDateTimePicker(
                     name: 'date',
-                    controller: vencimiento10,
+                    // controller: vencimiento10,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha10'),
-                    // initialValue: DateTime.now(),
+                    initialValue: vencimiento10.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento10.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -574,7 +601,37 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
       actions: <Widget>[
         TextButton(
           child: Text('Aceptar'),
-          onPressed: () {
+          onPressed: () async {
+            var almacenBox = await Hive.openBox<Almacen>('almacen');
+            // this.id, this.codigo, this.codigoProducto, this.producto, this.unidad, this.saldo, this.registro, this.vencimiento, this.grupo, this.estado, this.cantidad, this.detalle
+            var almacenInsert=Almacen(
+              id: widget.almacen.id,
+              codigo: widget.almacen.codigo,
+              codigoProducto: widget.almacen.codigoProducto,
+              producto: widget.almacen.producto,
+              unidad: widget.almacen.unidad,
+              saldo: widget.almacen.saldo,
+              registro: widget.almacen.registro,
+              vencimiento: widget.almacen.vencimiento,
+              grupo: widget.almacen.grupo,
+              estado: 'REALIZADO',
+              cantidad: total,
+              detalle: [
+                Detalle(cantidad: cantidad1.text, vencimiento: vencimiento1.text),
+                Detalle(cantidad: cantidad2.text, vencimiento: vencimiento2.text),
+                Detalle(cantidad: cantidad3.text, vencimiento: vencimiento3.text),
+                Detalle(cantidad: cantidad4.text, vencimiento: vencimiento4.text),
+                Detalle(cantidad: cantidad5.text, vencimiento: vencimiento5.text),
+                Detalle(cantidad: cantidad6.text, vencimiento: vencimiento6.text),
+                Detalle(cantidad: cantidad7.text, vencimiento: vencimiento7.text),
+                Detalle(cantidad: cantidad8.text, vencimiento: vencimiento8.text),
+                Detalle(cantidad: cantidad9.text, vencimiento: vencimiento9.text),
+                Detalle(cantidad: cantidad10.text, vencimiento: vencimiento10.text),
+              ],
+            );
+            almacenBox.put( widget.almacen.id, almacenInsert);
+            // print(jsonEncode(almacenInsert.toJson()));
+            widget.onClick!();
             Navigator.of(context).pop(); // Cerrar el diálogo
           },
         ),
