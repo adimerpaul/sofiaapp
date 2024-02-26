@@ -71,4 +71,18 @@ class ImportService {
       });
     }
   }
+  Future exportData() async {
+    var almacenBox = await Hive.openBox<Almacen>('almacen');
+    var userBox = await Hive.openBox<User>('user');
+    var uri = Uri.parse(apiURL() + 'exportData');
+    print(json.encode(almacenBox.values.toList()));
+    var response = await http.post(uri, body: {
+      'user': userBox.get(1)!.id.toString(),
+      'almacen': json.encode(almacenBox.values.toList())
+    });
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body);
+      // print(data);
+    }
+  }
 }

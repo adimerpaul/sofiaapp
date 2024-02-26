@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:appsofia/models/Almacen.dart';
 import 'package:appsofia/models/User.dart';
 import 'package:appsofia/pages/AlmacenAlert.dart';
+import 'package:appsofia/services/ImportService.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -16,6 +17,7 @@ class AlmacenPage extends StatefulWidget {
 class _AlmacenPageState extends State<AlmacenPage> {
   var almacen = [];
   var user = User(id: 0);
+  var loading = false;
   @override
   void initState() {
     getDatos();
@@ -30,6 +32,15 @@ class _AlmacenPageState extends State<AlmacenPage> {
       user = User(id: userBox.getAt(0)!.id, name: userBox.getAt(0)!.name);
     });
     // print(user.name);
+  }
+  void importData() async {
+    setState(() {
+      loading = true;
+    });
+    await ImportService().exportData();
+    setState(() {
+      loading = false;
+    });
   }
   void logout(context) {
     showDialog(
@@ -66,14 +77,34 @@ class _AlmacenPageState extends State<AlmacenPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            'Almacen',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+        title: Row(
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  loading ? null :
+                  importData();
+                },
+                child: loading ? CircularProgressIndicator() :
+                Row(
+                  children: [
+                    Icon(Icons.import_export, color: Colors.white,),
+                    Text('Exportar', style: TextStyle(color: Colors.white),)
+                  ],
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.orange),
+                ),
             ),
+            Text(
+              'Almacen',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false, // Esto elimina el botón de retroceso
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -201,6 +232,11 @@ class _AlmacenPageState extends State<AlmacenPage> {
                               ],
                             ),
                           ),
+                          Text('Grupo: ' +almacen[index].grupo!.trim(),style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
+                            fontSize: 11,
+                          ),),
                           Row(
                             children: [
                               Text('Saldo: '),
