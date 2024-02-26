@@ -15,7 +15,7 @@ class Almacen {
   @HiveField(4)
   String? unidad;
   @HiveField(5)
-  int? saldo;
+  double? saldo;
   @HiveField(6)
   DateTime? registro;
   @HiveField(7)
@@ -25,7 +25,7 @@ class Almacen {
   @HiveField(9)
   String? estado;
   @HiveField(10)
-  int? cantidad;
+  double? cantidad;
   @HiveField(11)
   List<Detalle>? detalle;
 

@@ -42,7 +42,7 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
   var vencimiento9 = TextEditingController();
   var cantidad10 = TextEditingController();
   var vencimiento10 = TextEditingController();
-  var total = 0;
+  double total = 0;
   @override
   void initState() {
     llenado();
@@ -73,36 +73,36 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
   }
 
   void calcularTotal() {
-    int sum = 0;
+    double sum = 0;
     if (cantidad1.text.isNotEmpty) {
-      sum += int.parse(cantidad1.text);
+      sum += double.parse(cantidad1.text);
     }
     if (cantidad2.text.isNotEmpty) {
-      sum += int.parse(cantidad2.text);
+      sum += double.parse(cantidad2.text);
     }
     if (cantidad3.text.isNotEmpty) {
-      sum += int.parse(cantidad3.text);
+      sum += double.parse(cantidad3.text);
     }
     if (cantidad4.text.isNotEmpty) {
-      sum += int.parse(cantidad4.text);
+      sum += double.parse(cantidad4.text);
     }
     if (cantidad5.text.isNotEmpty) {
-      sum += int.parse(cantidad5.text);
+      sum += double.parse(cantidad5.text);
     }
     if (cantidad6.text.isNotEmpty) {
-      sum += int.parse(cantidad6.text);
+      sum += double.parse(cantidad6.text);
     }
     if (cantidad7.text.isNotEmpty) {
-      sum += int.parse(cantidad7.text);
+      sum += double.parse(cantidad7.text);
     }
     if (cantidad8.text.isNotEmpty) {
-      sum += int.parse(cantidad8.text);
+      sum += double.parse(cantidad8.text);
     }
     if (cantidad9.text.isNotEmpty) {
-      sum += int.parse(cantidad9.text);
+      sum += double.parse(cantidad9.text);
     }
     if (cantidad10.text.isNotEmpty) {
-      sum += int.parse(cantidad10.text);
+      sum += double.parse(cantidad10.text);
     }
     setState(() {
       total = sum;
@@ -188,7 +188,7 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
             ),),
               Text(total.toString(),
                 style: TextStyle(
-                  color: int.parse(widget.almacen.saldo.toString()) == int.parse(total.toString()) ? Colors.green : Colors.red,
+                  color: double.parse(widget.almacen.saldo.toString()) == double.parse(total.toString()) ? Colors.green : Colors.red,
                   fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
                   fontSize: 20,
                 ),
@@ -218,9 +218,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                         calcularTotal();
                       });
                     },
-                    keyboardType: TextInputType.number, // Asegura que el teclado que se muestra sea numérico
+                    keyboardType: TextInputType.numberWithOptions(decimal: true), // Asegura que el teclado que se muestra sea numérico
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly // Acepta solo dígitos
+                      FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')) // Acepta solo números con un máximo de dos decimales
                     ],
                   ),
                 ),
@@ -258,9 +258,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                         calcularTotal();
                       });
                     },
-                    keyboardType: TextInputType.number, // Asegura que el teclado que se muestra sea numérico
+                    keyboardType: TextInputType.numberWithOptions(decimal: true), // Asegura que el teclado que se muestra sea numérico
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly // Acepta solo dígitos
+                      FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')) // Acepta solo números con un máximo de dos decimales
                     ],
                   ),
                 ),
@@ -297,9 +297,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                         calcularTotal();
                       });
                     },
-                    keyboardType: TextInputType.number, // Asegura que el teclado que se muestra sea numérico
+                    keyboardType: TextInputType.numberWithOptions(decimal: true), // Asegura que el teclado que se muestra sea numérico
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly // Acepta solo dígitos
+                      FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')) // Acepta solo números con un máximo de dos decimales
                     ],
                   ),
                 ),
@@ -336,9 +336,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                         calcularTotal();
                       });
                     },
-                    keyboardType: TextInputType.number, // Asegura que el teclado que se muestra sea numérico
+                    keyboardType: TextInputType.numberWithOptions(decimal: true), // Asegura que el teclado que se muestra sea numérico
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly // Acepta solo dígitos
+                      FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')) // Acepta solo números con un máximo de dos decimales
                     ],
                   ),
                 ),
@@ -375,9 +375,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                         calcularTotal();
                       });
                     },
-                    keyboardType: TextInputType.number, // Asegura que el teclado que se muestra sea numérico
+                    keyboardType: TextInputType.numberWithOptions(decimal: true), // Asegura que el teclado que se muestra sea numérico
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly // Acepta solo dígitos
+                      FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')) // Acepta solo números con un máximo de dos decimales
                     ],
                   ),
                 ),
@@ -414,9 +414,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                         calcularTotal();
                       });
                     },
-                    keyboardType: TextInputType.number, // Asegura que el teclado que se muestra sea numérico
+                    keyboardType: TextInputType.numberWithOptions(decimal: true), // Asegura que el teclado que se muestra sea numérico
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly // Acepta solo dígitos
+                      FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')) // Acepta solo números con un máximo de dos decimales
                     ],
                   ),
                 ),
@@ -453,9 +453,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                         calcularTotal();
                       });
                     },
-                    keyboardType: TextInputType.number, // Asegura que el teclado que se muestra sea numérico
+                    keyboardType: TextInputType.numberWithOptions(decimal: true), // Asegura que el teclado que se muestra sea numérico
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly // Acepta solo dígitos
+                      FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')) // Acepta solo números con un máximo de dos decimales
                     ],
                   ),
                 ),
@@ -492,9 +492,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                         calcularTotal();
                       });
                     },
-                    keyboardType: TextInputType.number, // Asegura que el teclado que se muestra sea numérico
+                    keyboardType: TextInputType.numberWithOptions(decimal: true), // Asegura que el teclado que se muestra sea numérico
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly // Acepta solo dígitos
+                      FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')) // Acepta solo números con un máximo de dos decimales
                     ],
                   ),
                 ),
@@ -531,9 +531,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                         calcularTotal();
                       });
                     },
-                    keyboardType: TextInputType.number, // Asegura que el teclado que se muestra sea numérico
+                    keyboardType: TextInputType.numberWithOptions(decimal: true), // Asegura que el teclado que se muestra sea numérico
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly // Acepta solo dígitos
+                      FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')) // Acepta solo números con un máximo de dos decimales
                     ],
                   ),
                 ),
@@ -570,9 +570,9 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                         calcularTotal();
                       });
                     },
-                    keyboardType: TextInputType.number, // Asegura que el teclado que se muestra sea numérico
+                    keyboardType: TextInputType.numberWithOptions(decimal: true), // Asegura que el teclado que se muestra sea numérico
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly // Acepta solo dígitos
+                      FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')) // Acepta solo números con un máximo de dos decimales
                     ],
                   ),
                 ),
@@ -599,41 +599,54 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
         ),
       ),
       actions: <Widget>[
-        TextButton(
-          child: Text('Aceptar'),
-          onPressed: () async {
-            var almacenBox = await Hive.openBox<Almacen>('almacen');
-            // this.id, this.codigo, this.codigoProducto, this.producto, this.unidad, this.saldo, this.registro, this.vencimiento, this.grupo, this.estado, this.cantidad, this.detalle
-            var almacenInsert=Almacen(
-              id: widget.almacen.id,
-              codigo: widget.almacen.codigo,
-              codigoProducto: widget.almacen.codigoProducto,
-              producto: widget.almacen.producto,
-              unidad: widget.almacen.unidad,
-              saldo: widget.almacen.saldo,
-              registro: widget.almacen.registro,
-              vencimiento: widget.almacen.vencimiento,
-              grupo: widget.almacen.grupo,
-              estado: 'REALIZADO',
-              cantidad: total,
-              detalle: [
-                Detalle(cantidad: cantidad1.text, vencimiento: vencimiento1.text),
-                Detalle(cantidad: cantidad2.text, vencimiento: vencimiento2.text),
-                Detalle(cantidad: cantidad3.text, vencimiento: vencimiento3.text),
-                Detalle(cantidad: cantidad4.text, vencimiento: vencimiento4.text),
-                Detalle(cantidad: cantidad5.text, vencimiento: vencimiento5.text),
-                Detalle(cantidad: cantidad6.text, vencimiento: vencimiento6.text),
-                Detalle(cantidad: cantidad7.text, vencimiento: vencimiento7.text),
-                Detalle(cantidad: cantidad8.text, vencimiento: vencimiento8.text),
-                Detalle(cantidad: cantidad9.text, vencimiento: vencimiento9.text),
-                Detalle(cantidad: cantidad10.text, vencimiento: vencimiento10.text),
-              ],
-            );
-            almacenBox.put( widget.almacen.id, almacenInsert);
-            // print(jsonEncode(almacenInsert.toJson()));
-            widget.onClick!();
-            Navigator.of(context).pop(); // Cerrar el diálogo
-          },
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: TextButton(
+              onPressed: () async {
+                var almacenBox = await Hive.openBox<Almacen>('almacen');
+                // this.id, this.codigo, this.codigoProducto, this.producto, this.unidad, this.saldo, this.registro, this.vencimiento, this.grupo, this.estado, this.cantidad, this.detalle
+                var almacenInsert=Almacen(
+                  id: widget.almacen.id,
+                  codigo: widget.almacen.codigo,
+                  codigoProducto: widget.almacen.codigoProducto,
+                  producto: widget.almacen.producto,
+                  unidad: widget.almacen.unidad,
+                  saldo: widget.almacen.saldo,
+                  registro: widget.almacen.registro,
+                  vencimiento: widget.almacen.vencimiento,
+                  grupo: widget.almacen.grupo,
+                  estado: 'REALIZADO',
+                  cantidad: total,
+                  detalle: [
+                    Detalle(cantidad: cantidad1.text, vencimiento: vencimiento1.text),
+                    Detalle(cantidad: cantidad2.text, vencimiento: vencimiento2.text),
+                    Detalle(cantidad: cantidad3.text, vencimiento: vencimiento3.text),
+                    Detalle(cantidad: cantidad4.text, vencimiento: vencimiento4.text),
+                    Detalle(cantidad: cantidad5.text, vencimiento: vencimiento5.text),
+                    Detalle(cantidad: cantidad6.text, vencimiento: vencimiento6.text),
+                    Detalle(cantidad: cantidad7.text, vencimiento: vencimiento7.text),
+                    Detalle(cantidad: cantidad8.text, vencimiento: vencimiento8.text),
+                    Detalle(cantidad: cantidad9.text, vencimiento: vencimiento9.text),
+                    Detalle(cantidad: cantidad10.text, vencimiento: vencimiento10.text),
+                  ],
+                );
+                almacenBox.put( widget.almacen.id, almacenInsert);
+                // print(jsonEncode(almacenInsert.toJson()));
+                widget.onClick!();
+                Navigator.of(context).pop(); // Cerrar el diálogo
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.red, // Color de fondo del botón
+                primary: Colors.white, // Color del texto del botón
+                minimumSize: Size(double.infinity, 60.0), // Ancho completo y altura de 60.0
+              ),
+              child: Text(
+                'Aceptar',
+                style: TextStyle(fontSize: 20.0), // Tamaño de texto
+              ),
+            ),
+          ),
         ),
       ],
     );

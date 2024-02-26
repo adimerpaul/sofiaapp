@@ -159,7 +159,10 @@ class _HomePageState extends State<HomePage> {
           ),
           Text('user: ${_user.text}'),
           Padding(
-              padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
+            child: SizedBox(
+              width: double.infinity, // Ancho completo
+              height: 60.0, // Altura deseada
               child: ElevatedButton(
                 onPressed: _loading ? null : importData,
                 child: _loading ? CircularProgressIndicator() : Text('Importar'),
@@ -169,6 +172,7 @@ class _HomePageState extends State<HomePage> {
                   onSurface: Colors.grey,
                 ),
               ),
+            ),
           ),
         ]
       ),

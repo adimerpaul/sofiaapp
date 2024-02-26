@@ -22,12 +22,12 @@ class AlmacenAdapter extends TypeAdapter<Almacen> {
       codigoProducto: fields[2] as String?,
       producto: fields[3] as String?,
       unidad: fields[4] as String?,
-      saldo: fields[5] as int?,
+      saldo: fields[5] as double?,
       registro: fields[6] as DateTime?,
       vencimiento: fields[7] as DateTime?,
       grupo: fields[8] as String?,
       estado: fields[9] as String?,
-      cantidad: fields[10] as int?,
+      cantidad: fields[10] as double?,
       detalle: (fields[11] as List?)?.cast<Detalle>(),
     );
   }

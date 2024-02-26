@@ -33,6 +33,17 @@ class _AlmacenPageState extends State<AlmacenPage> {
     });
     // print(user.name);
   }
+  Color? getColorForCard(Almacen almacen) {
+    double diferencia = almacen.saldo! - almacen.cantidad!;
+
+    if (diferencia.abs() < 0.5) {
+      return Colors.green[100];
+    } else if (almacen.estado == 'PENDIENTE') {
+      return Colors.white;
+    } else {
+      return Colors.red[100];
+    }
+  }
   void importData() async {
     setState(() {
       loading = true;
@@ -198,6 +209,7 @@ class _AlmacenPageState extends State<AlmacenPage> {
                     );
                   },
                   child: Card(
+                    color: getColorForCard(almacen[index]),
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Column(
@@ -208,12 +220,6 @@ class _AlmacenPageState extends State<AlmacenPage> {
                             scrollDirection: Axis.horizontal,
                             child: Row(
                               children: [
-                                Text(
-                                  (index+1).toString()+' '+almacen[index].producto!.trim()+ ' ' ,style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
-                                  fontSize: 11,
-                                ),),
                                 Container(
                                   padding: EdgeInsets.symmetric(horizontal: 3, vertical: 2), // Ajusta el padding del Container
                                   decoration: BoxDecoration(
@@ -229,6 +235,12 @@ class _AlmacenPageState extends State<AlmacenPage> {
                                     ),
                                   ),
                                 ),
+                                Text(
+                                  (index+1).toString()+' '+almacen[index].producto!.trim()+ ' ' ,style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
+                                  fontSize: 11,
+                                ),),
                               ],
                             ),
                           ),
@@ -254,7 +266,7 @@ class _AlmacenPageState extends State<AlmacenPage> {
                               Text(' Cantidad: '),
                               Container(
                                 decoration: BoxDecoration(
-                                  color: int.parse(almacen[index].cantidad.toString()) == int.parse(almacen[index].saldo.toString()) ? Colors.green : Colors.red, // Establece el color de fondo del Container según la cantidad (saldo y cantidad iguales: verde, saldo y cantidad diferentes: rojo
+                                  color: double.parse(almacen[index].cantidad.toString()) == double.parse(almacen[index].saldo.toString()) ? Colors.green : Colors.red, // Establece el color de fondo del Container según la cantidad (saldo y cantidad iguales: verde, saldo y cantidad diferentes: rojo
                                   borderRadius: BorderRadius.circular(3),
                                 ),
                                 child: Padding(
