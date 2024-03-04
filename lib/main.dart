@@ -10,7 +10,7 @@ import 'package:hive_flutter/adapters.dart';
 
 
 Future<void> main() async {
-  await dotenv.load(fileName: ".env");
+  // await dotenv.load(fileName: ".env");
 
   await Hive.initFlutter();
   Hive.registerAdapter(UserAdapter());

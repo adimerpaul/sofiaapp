@@ -638,7 +638,7 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
               },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.red, // Color de fondo del botón
-                primary: Colors.white, // Color del texto del botón
+                // primary: Colors.white, // Color del texto del botón
                 minimumSize: Size(double.infinity, 60.0), // Ancho completo y altura de 60.0
               ),
               child: Text(

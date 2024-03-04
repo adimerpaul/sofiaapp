@@ -167,9 +167,9 @@ class _HomePageState extends State<HomePage> {
                 onPressed: _loading ? null : importData,
                 child: _loading ? CircularProgressIndicator() : Text('Importar'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.red,
-                  onPrimary: Colors.white,
-                  onSurface: Colors.grey,
+                  // primary: Colors.red,
+                  // onPrimary: Colors.white,
+                  // onSurface: Colors.grey,
                 ),
               ),
             ),
