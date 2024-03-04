@@ -35,8 +35,9 @@ class _AlmacenPageState extends State<AlmacenPage> {
   }
   Color? getColorForCard(Almacen almacen) {
     double diferencia = almacen.saldo! - almacen.cantidad!;
-
-    if (diferencia.abs() < 0.5) {
+    if (almacen.cantidad == 0) {
+      return Colors.white;
+    }else if (diferencia.abs() < 0.5) {
       return Colors.green[100];
     } else if (almacen.estado == 'PENDIENTE') {
       return Colors.white;
@@ -145,27 +146,27 @@ class _AlmacenPageState extends State<AlmacenPage> {
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w900, // Aquí puedes ajustar el valor de FontWeight
-                          fontSize: 11,
+                          fontSize: 13,
                         ),
                       ),
                       Text('${user.name}',
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 11,
+                          fontSize: 13,
                         ),
                       ),
                       Text(' Codigo: ',
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w900, // Aquí puedes ajustar el valor de FontWeight
-                          fontSize: 11,
+                          fontSize: 13,
                         ),
                       ),
                       Text(
                         almacen.length > 0 ? almacen[0].codigo.toString() : '',
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 11,
+                          fontSize: 13,
                         ),
                       ),
                     ],
@@ -176,7 +177,7 @@ class _AlmacenPageState extends State<AlmacenPage> {
                     color: Colors.blueGrey[900],
                     child: Center(
                       child: Text(
-                        'Total: ${almacen.length} | Pendientes: ${almacen.where((element) => element.estado == 'PENDIENTE').length} | Registrados: ${almacen.where((element) => element.estado == 'REGISTRADO').length}',
+                        'Total: ${almacen.length} | Pendientes: ${almacen.where((element) => element.estado == 'PENDIENTE').length} | Registrados: ${almacen.length - almacen.where((element) => element.estado == 'PENDIENTE').length}',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,
@@ -211,7 +212,7 @@ class _AlmacenPageState extends State<AlmacenPage> {
                   child: Card(
                     color: getColorForCard(almacen[index]),
                     child: Padding(
-                      padding: const EdgeInsets.all(5.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -231,7 +232,7 @@ class _AlmacenPageState extends State<AlmacenPage> {
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 11, // Ajusta el tamaño del texto del Chip
+                                      fontSize: 13, // Ajusta el tamaño del texto del Chip
                                     ),
                                   ),
                                 ),
@@ -239,7 +240,7 @@ class _AlmacenPageState extends State<AlmacenPage> {
                                   (index+1).toString()+' '+almacen[index].producto!.trim()+ ' ' ,style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
-                                  fontSize: 11,
+                                  fontSize: 13,
                                 ),),
                               ],
                             ),
@@ -247,7 +248,7 @@ class _AlmacenPageState extends State<AlmacenPage> {
                           Text('Grupo: ' +almacen[index].grupo!.trim(),style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
-                            fontSize: 11,
+                            fontSize: 13,
                           ),),
                           Row(
                             children: [
@@ -255,13 +256,13 @@ class _AlmacenPageState extends State<AlmacenPage> {
                               Text(almacen[index].saldo.toString(),style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w900, // Aquí puedes ajustar el valor de FontWeight
-                                fontSize: 11,
+                                fontSize: 13,
                               ),),
                               Text(' Vencimiento: '),
                               Text(almacen[index].vencimiento.toString().substring(0,10),style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w900, // Aquí puedes ajustar el valor de FontWeight
-                                fontSize: 11,
+                                fontSize: 13,
                               ),),
                               Text(' Cantidad: '),
                               Container(
@@ -274,7 +275,7 @@ class _AlmacenPageState extends State<AlmacenPage> {
                                   child: Text(almacen[index].cantidad.toString(),style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w900, // Aquí puedes ajustar el valor de FontWeight
-                                    fontSize: 11,
+                                    fontSize: 13,
                                   ),),
                                 ),
                               ),

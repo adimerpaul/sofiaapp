@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 
 class ImportService {
   static apiURL() {
+    // return 'http://192.168.1.2:8000/api/';
     return 'https://bsofia.siscenter.org/api/';
   }
 
@@ -39,17 +40,18 @@ class ImportService {
       'fecha': fecha,
       'codigo': codigo,
     });
+    print(response.body);
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
       data.forEach((almacen) async {
-        print(almacen['id']);
+        print(almacen['saldo']);
         await almacenBox.put(almacen['id'], Almacen(
           id: almacen['id'],
           codigo: almacen['codigo'],
           codigoProducto: almacen['codigo_producto'],
           producto: almacen['producto'],
           unidad: almacen['unidad'],
-          saldo: almacen['saldo'],
+          saldo: double.parse(almacen['saldo'].toString()),
           registro: DateTime.parse(almacen['registro']),
           vencimiento: DateTime.parse(almacen['vencimiento']),
           grupo: almacen['grupo'],

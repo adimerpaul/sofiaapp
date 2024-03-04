@@ -79,16 +79,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text(
-      //       'Importar y Datos',
-      //       style: TextStyle(
-      //         color: Colors.white,
-      //         fontWeight: FontWeight.bold,
-      //       ),
-      //   ),
-      //   centerTitle: true,
-      // ),
+      appBar: AppBar(
+        title: const Text(
+            'Importar y Datos',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+        ),
+        centerTitle: true,
+      ),
       body: Column(
         children: [
           Text(
@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 100,
             width: 100,
-            child: Image.asset('logo.png')
+            child: Image.asset('assets/logo.png'),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
@@ -165,10 +165,9 @@ class _HomePageState extends State<HomePage> {
               height: 60.0, // Altura deseada
               child: ElevatedButton(
                 onPressed: _loading ? null : importData,
-                child: _loading ? CircularProgressIndicator() : Text('Importar'),
+                child: _loading ? CircularProgressIndicator() : Text('Importar', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18)),
                 style: ElevatedButton.styleFrom(
-                  // primary: Colors.red,
-                  // onPrimary: Colors.white,
+                  backgroundColor: Colors.red,
                   // onSurface: Colors.grey,
                 ),
               ),

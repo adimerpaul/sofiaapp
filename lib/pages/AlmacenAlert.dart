@@ -231,7 +231,7 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     // controller: vencimiento1,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha1'),
-                    initialValue: vencimiento1.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento1.text),
+                    initialValue: vencimiento1.text.isEmpty ? null : DateTime.parse(vencimiento1.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -271,7 +271,7 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     // controller: vencimiento2,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha2'),
-                    initialValue: vencimiento2.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento2.text),
+                    initialValue: vencimiento2.text.isEmpty ? null : DateTime.parse(vencimiento2.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -310,7 +310,7 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     // controller: vencimiento3,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha3'),
-                    initialValue: vencimiento3.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento3.text),
+                    initialValue: vencimiento3.text.isEmpty ? null : DateTime.parse(vencimiento3.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -349,7 +349,7 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     // controller: vencimiento4,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha4'),
-                    initialValue: vencimiento4.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento4.text),
+                    initialValue: vencimiento4.text.isEmpty ? null : DateTime.parse(vencimiento4.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -388,7 +388,7 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     // controller: vencimiento5,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha5'),
-                    initialValue: vencimiento5.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento5.text),
+                    initialValue: vencimiento5.text.isEmpty ? null : DateTime.parse(vencimiento5.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -427,7 +427,7 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     // controller: vencimiento6,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha6'),
-                    initialValue: vencimiento6.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento6.text),
+                    initialValue: vencimiento6.text.isEmpty ? null : DateTime.parse(vencimiento6.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -466,7 +466,7 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     // controller: vencimiento7,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha7'),
-                    initialValue: vencimiento7.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento7.text),
+                    initialValue: vencimiento7.text.isEmpty ? null : DateTime.parse(vencimiento7.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -505,7 +505,7 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     // controller: vencimiento8,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha8'),
-                    initialValue: vencimiento8.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento8.text),
+                    initialValue: vencimiento8.text.isEmpty ? null : DateTime.parse(vencimiento8.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -544,7 +544,7 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     // controller: vencimiento9,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha9'),
-                    initialValue: vencimiento9.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento9.text),
+                    initialValue: vencimiento9.text.isEmpty ? null : DateTime.parse(vencimiento9.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -583,7 +583,7 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     // controller: vencimiento10,
                     inputType: InputType.date,
                     decoration: InputDecoration(labelText: 'Fecha10'),
-                    initialValue: vencimiento10.text.isEmpty ? DateTime.now() : DateTime.parse(vencimiento10.text),
+                    initialValue: vencimiento10.text.isEmpty ? null : DateTime.parse(vencimiento10.text),
                     locale: const Locale('es', 'ES'),
                     onChanged: (value) {
                       setState(() {
@@ -643,7 +643,7 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
               ),
               child: Text(
                 'Aceptar',
-                style: TextStyle(fontSize: 20.0), // Tamaño de texto
+                style: TextStyle(fontSize: 20.0,color: Colors.white,fontWeight: FontWeight.bold),
               ),
             ),
           ),
