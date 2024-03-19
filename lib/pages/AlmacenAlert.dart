@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hive/hive.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AlmacenAlert extends StatefulWidget {
   final almacen;
@@ -108,11 +109,36 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
       total = sum;
     });
   }
+  // _launchCalculator() async {
+  //   final Uri _url = Uri.parse('https://flutter.dev');
+  //   if (await canLaunch(_url.toString())) {
+  //     await launch(_url.toString());
+  //   } else {
+  //     throw 'Could not launch $_url';
+  //   }
+  // }
+  Future<void> _launchCalculator() async {
+    final Uri _url = Uri.parse('https://calculadorasonline.com/');
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Detalle'),
+      title: Row(
+        children: [
+          Text('Detalle'),
+          SizedBox(width: 5),
+          GestureDetector(
+            onTap: () {
+              _launchCalculator();
+            },
+            child: Icon(Icons.calculate_outlined),
+          ),
+        ],
+      ),
       content: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,6 +174,15 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
               color: Colors.black,
               fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
               fontSize: 20,
+            ),),]),
+            Row(children: [Text('Unidad x kilo: ',style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
+              fontSize: 12,
+            ),), Text(widget.almacen.unidad.toString(),style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
+              fontSize: 10,
             ),),]),
             Row(children: [Text('Registro: ',style: TextStyle(
               color: Colors.black,

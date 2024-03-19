@@ -16,6 +16,9 @@ class AlmacenPage extends StatefulWidget {
 
 class _AlmacenPageState extends State<AlmacenPage> {
   var almacen = [];
+  var almacenAll = [];
+  var almacenTodo = [];
+  var almacenPorColor = [];
   var user = User(id: 0);
   var loading = false;
   @override
@@ -27,11 +30,28 @@ class _AlmacenPageState extends State<AlmacenPage> {
     var almacenBox = await Hive.openBox<Almacen>('almacen');
     var userBox = await Hive.openBox<User>('user');
     setState(() {
-      almacen = almacenBox.values.toList();
+      almacenTodo = almacenBox.values.toList();
+      almacenPorColor=ordenaPorEstado(almacenTodo);
+      almacen = almacenPorColor;
+      almacenAll = almacenPorColor;
       // print(jsonEncode(almacen));
       user = User(id: userBox.getAt(0)!.id, name: userBox.getAt(0)!.name);
     });
     // print(user.name);
+  }
+  List<Almacen> ordenaPorEstado(almacen) {
+    List<Almacen> pendientes = [];
+    List<Almacen> registrados = [];
+    for (var i = 0; i < almacen.length; i++) {
+      if (almacen[i].estado == 'PENDIENTE') {
+        pendientes.add(almacen[i]);
+      } else {
+        registrados.add(almacen[i]);
+      }
+    }
+    pendientes.sort((a, b) => a.producto!.compareTo(b.producto!));
+    registrados.sort((a, b) => a.producto!.compareTo(b.producto!));
+    return pendientes + registrados;
   }
   Color? getColorForCard(Almacen almacen) {
     double diferencia = almacen.saldo! - almacen.cantidad!;
@@ -186,7 +206,22 @@ class _AlmacenPageState extends State<AlmacenPage> {
                       ),
                     )
                 ),
-
+                //buscador keu upp
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Buscar',
+                    prefixIcon: Icon(Icons.search),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    // print(value);
+                    setState(() {
+                      almacen = almacenAll.where((element) => element.producto!.toLowerCase().contains(value.toLowerCase())).toList();
+                    });
+                  },
+                ),
               ],
             ),
           ),
@@ -258,6 +293,10 @@ class _AlmacenPageState extends State<AlmacenPage> {
                                 fontWeight: FontWeight.w900, // Aquí puedes ajustar el valor de FontWeight
                                 fontSize: 13,
                               ),),
+                            ],
+                          ),
+                          Row(
+                            children: [
                               Text(' Vencimiento: '),
                               Text(almacen[index].vencimiento.toString().substring(0,10),style: TextStyle(
                                 color: Colors.black,
