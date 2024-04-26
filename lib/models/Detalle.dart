@@ -7,9 +7,9 @@ class Detalle {
   String? cantidad;
   @HiveField(1)
   String? vencimiento;
-  @HiveField(1)
+  @HiveField(2)
   String? lote;
-  @HiveField(1)
+  @HiveField(3)
   String? comentario;
   Detalle({this.cantidad, this.vencimiento, this.lote, this.comentario});
   Map<String, dynamic> toJson() {

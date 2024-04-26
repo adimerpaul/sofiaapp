@@ -19,17 +19,23 @@ class DetalleAdapter extends TypeAdapter<Detalle> {
     return Detalle(
       cantidad: fields[0] as String?,
       vencimiento: fields[1] as String?,
+      lote: fields[2] as String?,
+      comentario: fields[3] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Detalle obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.cantidad)
       ..writeByte(1)
-      ..write(obj.vencimiento);
+      ..write(obj.vencimiento)
+      ..writeByte(2)
+      ..write(obj.lote)
+      ..writeByte(3)
+      ..write(obj.comentario);
   }
 
   @override
