@@ -8,8 +8,8 @@ import 'package:http/http.dart' as http;
 
 class ImportService {
   static apiURL() {
-    // return 'http://192.168.1.7:8000/api/';
-    return 'https://bsofia.siscenter.org/api/';
+    return 'http://192.168.1.3:8000/api/';
+//     return 'https://bsofia.siscenter.org/api/';
   }
 
   Future users() async {

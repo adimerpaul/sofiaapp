@@ -41,17 +41,24 @@ class _AlmacenPageState extends State<AlmacenPage> {
   }
   List<Almacen> ordenaPorEstado(almacen) {
     List<Almacen> pendientes = [];
-    List<Almacen> registrados = [];
+    List<Almacen> cuadraNot = [];
+    List<Almacen> cuadra = [];
     for (var i = 0; i < almacen.length; i++) {
       if (almacen[i].estado == 'PENDIENTE') {
         pendientes.add(almacen[i]);
       } else {
-        registrados.add(almacen[i]);
+        // ordenar por que primero irian los que no cuadran la cantidad y luego los que cuadran
+        if(almacen[i].saldo!=almacen[i].cantidad){
+          cuadraNot.add(almacen[i]);
+        }else{
+          cuadra.add(almacen[i]);
+        }
       }
     }
     pendientes.sort((a, b) => a.producto!.compareTo(b.producto!));
-    registrados.sort((a, b) => a.producto!.compareTo(b.producto!));
-    return pendientes + registrados;
+    cuadraNot.sort((a, b) => a.producto!.compareTo(b.producto!));
+    cuadra.sort((a, b) => a.producto!.compareTo(b.producto!));
+    return pendientes + cuadraNot + cuadra;
   }
   Color? getColorForCard(Almacen almacen) {
     double diferencia = almacen.saldo! - almacen.cantidad!;
