@@ -5,6 +5,7 @@ import 'package:appsofia/models/User.dart';
 import 'package:appsofia/pages/AlmacenAlert.dart';
 import 'package:appsofia/services/ImportService.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive/hive.dart';
 
 class AlmacenPage extends StatefulWidget {
@@ -134,12 +135,33 @@ class _AlmacenPageState extends State<AlmacenPage> {
                   backgroundColor: MaterialStateProperty.all(Colors.orange),
                 ),
             ),
-            Text(
-              'Almacen',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+            Row(
+              children: [
+                Text(
+                  'Almacen',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(width: 10),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.purple,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Text(dotenv.env['VERSION']!,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
           ],
         ),

@@ -4,6 +4,7 @@ import 'package:appsofia/pages/AlmacenPage.dart';
 import 'package:appsofia/services/ImportService.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hive/hive.dart';
@@ -26,6 +27,16 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     getUsers();
+    verifiLogin();
+  }
+  void verifiLogin() async {
+    var userBox = await Hive.openBox<User>('user');
+    if(userBox.isNotEmpty){
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => AlmacenPage()),
+      );
+    }
   }
 
   void getUsers() async {
@@ -91,13 +102,35 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          Text(
-            'Almacen sofia',
-            style: TextStyle(
-              color: Colors.red,
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Almacen sofia',
+                style: TextStyle(
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+              SizedBox(width: 10),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.purple,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Text(dotenv.env['VERSION']!,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              )
+            ],
           ),
           SizedBox(
             height: 100,
