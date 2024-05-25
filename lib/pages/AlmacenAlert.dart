@@ -4,6 +4,7 @@ import 'package:appsofia/models/Almacen.dart';
 import 'package:appsofia/models/Detalle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hive/hive.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -74,43 +75,43 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
     cantidad1.text = widget.almacen.detalle.length > 0 ? widget.almacen.detalle[0].cantidad.toString() : '';
     vencimiento1.text = widget.almacen.detalle.length > 0 ? widget.almacen.detalle[0].vencimiento.toString() : '';
     lote1.text = widget.almacen.detalle.length > 0 ? widget.almacen.detalle[0].lote.toString() : '';
-    comentario1.text = widget.almacen.detalle.length > 0 ? widget.almacen.detalle[0].comentario.toString() : '';
+    comentario1.text = widget.almacen.detalle.length > 0 ? widget.almacen.detalle[0].comentario.toString()=='null' ? '' : widget.almacen.detalle[0].comentario.toString() : '';
     cantidad2.text = widget.almacen.detalle.length > 1 ? widget.almacen.detalle[1].cantidad.toString() : '';
     vencimiento2.text = widget.almacen.detalle.length > 1 ? widget.almacen.detalle[1].vencimiento.toString() : '';
     lote2.text = widget.almacen.detalle.length > 1 ? widget.almacen.detalle[1].lote.toString() : '';
-    comentario2.text = widget.almacen.detalle.length > 1 ? widget.almacen.detalle[1].comentario.toString() : '';
+    comentario2.text = widget.almacen.detalle.length > 1 ? widget.almacen.detalle[1].comentario.toString()== 'null' ? '' : widget.almacen.detalle[1].comentario.toString() : '';
     cantidad3.text = widget.almacen.detalle.length > 2 ? widget.almacen.detalle[2].cantidad.toString() : '';
     vencimiento3.text = widget.almacen.detalle.length > 2 ? widget.almacen.detalle[2].vencimiento.toString() : '';
     lote3.text = widget.almacen.detalle.length > 2 ? widget.almacen.detalle[2].lote.toString() : '';
-    comentario3.text = widget.almacen.detalle.length > 2 ? widget.almacen.detalle[2].comentario.toString() : '';
+    comentario3.text = widget.almacen.detalle.length > 2 ? widget.almacen.detalle[2].comentario.toString()== 'null' ? '' : widget.almacen.detalle[2].comentario.toString() : '';
     cantidad4.text = widget.almacen.detalle.length > 3 ? widget.almacen.detalle[3].cantidad.toString() : '';
     vencimiento4.text = widget.almacen.detalle.length > 3 ? widget.almacen.detalle[3].vencimiento.toString() : '';
     lote4.text = widget.almacen.detalle.length > 3 ? widget.almacen.detalle[3].lote.toString() : '';
-    comentario4.text = widget.almacen.detalle.length > 3 ? widget.almacen.detalle[3].comentario.toString() : '';
+    comentario4.text = widget.almacen.detalle.length > 3 ? widget.almacen.detalle[3].comentario.toString()== 'null' ? '' : widget.almacen.detalle[3].comentario.toString() : '';
     cantidad5.text = widget.almacen.detalle.length > 4 ? widget.almacen.detalle[4].cantidad.toString() : '';
     vencimiento5.text = widget.almacen.detalle.length > 4 ? widget.almacen.detalle[4].vencimiento.toString() : '';
     lote5.text = widget.almacen.detalle.length > 4 ? widget.almacen.detalle[4].lote.toString() : '';
-    comentario5.text = widget.almacen.detalle.length > 4 ? widget.almacen.detalle[4].comentario.toString() : '';
+    comentario5.text = widget.almacen.detalle.length > 4 ? widget.almacen.detalle[4].comentario.toString()== 'null' ? '' : widget.almacen.detalle[4].comentario.toString() : '';
     cantidad6.text = widget.almacen.detalle.length > 5 ? widget.almacen.detalle[5].cantidad.toString() : '';
     vencimiento6.text = widget.almacen.detalle.length > 5 ? widget.almacen.detalle[5].vencimiento.toString() : '';
     lote6.text = widget.almacen.detalle.length > 5 ? widget.almacen.detalle[5].lote.toString() : '';
-    comentario6.text = widget.almacen.detalle.length > 5 ? widget.almacen.detalle[5].comentario.toString() : '';
+    comentario6.text = widget.almacen.detalle.length > 5 ? widget.almacen.detalle[5].comentario.toString()== 'null' ? '' : widget.almacen.detalle[5].comentario.toString() : '';
     cantidad7.text = widget.almacen.detalle.length > 6 ? widget.almacen.detalle[6].cantidad.toString() : '';
     vencimiento7.text = widget.almacen.detalle.length > 6 ? widget.almacen.detalle[6].vencimiento.toString() : '';
     lote7.text = widget.almacen.detalle.length > 6 ? widget.almacen.detalle[6].lote.toString() : '';
-    comentario7.text = widget.almacen.detalle.length > 6 ? widget.almacen.detalle[6].comentario.toString() : '';
+    comentario7.text = widget.almacen.detalle.length > 6 ? widget.almacen.detalle[6].comentario.toString()== 'null' ? '' : widget.almacen.detalle[6].comentario.toString() : '';
     cantidad8.text = widget.almacen.detalle.length > 7 ? widget.almacen.detalle[7].cantidad.toString() : '';
     vencimiento8.text = widget.almacen.detalle.length > 7 ? widget.almacen.detalle[7].vencimiento.toString() : '';
     lote8.text = widget.almacen.detalle.length > 7 ? widget.almacen.detalle[7].lote.toString() : '';
-    comentario8.text = widget.almacen.detalle.length > 7 ? widget.almacen.detalle[7].comentario.toString() : '';
+    comentario8.text = widget.almacen.detalle.length > 7 ? widget.almacen.detalle[7].comentario.toString()== 'null' ? '' : widget.almacen.detalle[7].comentario.toString() : '';
     cantidad9.text = widget.almacen.detalle.length > 8 ? widget.almacen.detalle[8].cantidad.toString() : '';
     vencimiento9.text = widget.almacen.detalle.length > 8 ? widget.almacen.detalle[8].vencimiento.toString() : '';
     lote9.text = widget.almacen.detalle.length > 8 ? widget.almacen.detalle[8].lote.toString() : '';
-    comentario9.text = widget.almacen.detalle.length > 8 ? widget.almacen.detalle[8].comentario.toString() : '';
+    comentario9.text = widget.almacen.detalle.length > 8 ? widget.almacen.detalle[8].comentario.toString()== 'null' ? '' : widget.almacen.detalle[8].comentario.toString() : '';
     cantidad10.text = widget.almacen.detalle.length > 9 ? widget.almacen.detalle[9].cantidad.toString() : '';
     vencimiento10.text = widget.almacen.detalle.length > 9 ? widget.almacen.detalle[9].vencimiento.toString() : '';
     lote10.text = widget.almacen.detalle.length > 9 ? widget.almacen.detalle[9].lote.toString() : '';
-    comentario10.text = widget.almacen.detalle.length > 9 ? widget.almacen.detalle[9].comentario.toString() : '';
+    comentario10.text = widget.almacen.detalle.length > 9 ? widget.almacen.detalle[9].comentario.toString()== 'null' ? '' : widget.almacen.detalle[9].comentario.toString() : '';
   }
 
   void calcularTotal() {
@@ -317,6 +318,20 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     },
                   ),
                 ),
+                SizedBox(width: 5),
+                Expanded(
+                  child: FormBuilderTextField(
+                    name: 'comentario1',
+                    // controller: comentario1,
+                    decoration: InputDecoration(labelText: 'Comentario1'),
+                    initialValue: comentario1.text,
+                    onChanged: (value) {
+                      setState(() {
+                        comentario1.text = value!;
+                      });
+                    },
+                  ),
+                ),
               ],
             ),
             Row(
@@ -352,6 +367,20 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                       setState(() {
                         vencimiento2.text = value.toString();
                         calcularTotal();
+                      });
+                    },
+                  ),
+                ),
+                SizedBox(width: 5),
+                Expanded(
+                  child: FormBuilderTextField(
+                    name: 'comentario2',
+                    // controller: comentario2,
+                    decoration: InputDecoration(labelText: 'Comentario2'),
+                    initialValue: comentario2.text,
+                    onChanged: (value) {
+                      setState(() {
+                        comentario2.text = value!;
                       });
                     },
                   ),
@@ -395,6 +424,20 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     },
                   ),
                 ),
+                SizedBox(width: 5),
+                Expanded(
+                  child: FormBuilderTextField(
+                    name: 'comentario3',
+                    // controller: comentario3,
+                    decoration: InputDecoration(labelText: 'Comentario3'),
+                    initialValue: comentario3.text,
+                    onChanged: (value) {
+                      setState(() {
+                        comentario3.text = value!;
+                      });
+                    },
+                  ),
+                ),
               ],
             ),
             Row(
@@ -430,6 +473,20 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                       setState(() {
                         vencimiento4.text = value.toString();
                         calcularTotal();
+                      });
+                    },
+                  ),
+                ),
+                SizedBox(width: 5),
+                Expanded(
+                  child: FormBuilderTextField(
+                    name: 'comentario4',
+                    // controller: comentario4,
+                    decoration: InputDecoration(labelText: 'Comentario4'),
+                    initialValue: comentario4.text,
+                    onChanged: (value) {
+                      setState(() {
+                        comentario4.text = value!;
                       });
                     },
                   ),
@@ -473,6 +530,20 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     },
                   ),
                 ),
+                SizedBox(width: 5),
+                Expanded(
+                  child: FormBuilderTextField(
+                    name: 'comentario5',
+                    // controller: comentario5,
+                    decoration: InputDecoration(labelText: 'Comentario5'),
+                    initialValue: comentario5.text,
+                    onChanged: (value) {
+                      setState(() {
+                        comentario5.text = value!;
+                      });
+                    },
+                  ),
+                ),
               ],
             ),
             Row(
@@ -508,6 +579,20 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                       setState(() {
                         vencimiento6.text = value.toString();
                         calcularTotal();
+                      });
+                    },
+                  ),
+                ),
+                SizedBox(width: 5),
+                Expanded(
+                  child: FormBuilderTextField(
+                    name: 'comentario6',
+                    // controller: comentario6,
+                    decoration: InputDecoration(labelText: 'Comentario6'),
+                    initialValue: comentario6.text,
+                    onChanged: (value) {
+                      setState(() {
+                        comentario6.text = value!;
                       });
                     },
                   ),
@@ -551,6 +636,20 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     },
                   ),
                 ),
+                SizedBox(width: 5),
+                Expanded(
+                  child: FormBuilderTextField(
+                    name: 'comentario7',
+                    // controller: comentario7,
+                    decoration: InputDecoration(labelText: 'Comentario7'),
+                    initialValue: comentario7.text,
+                    onChanged: (value) {
+                      setState(() {
+                        comentario7.text = value!;
+                      });
+                    },
+                  ),
+                ),
               ],
             ),
             Row(
@@ -586,6 +685,20 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                       setState(() {
                         vencimiento8.text = value.toString();
                         calcularTotal();
+                      });
+                    },
+                  ),
+                ),
+                SizedBox(width: 5),
+                Expanded(
+                  child: FormBuilderTextField(
+                    name: 'comentario8',
+                    // controller: comentario8,
+                    decoration: InputDecoration(labelText: 'Comentario8'),
+                    initialValue: comentario8.text,
+                    onChanged: (value) {
+                      setState(() {
+                        comentario8.text = value!;
                       });
                     },
                   ),
@@ -629,6 +742,20 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     },
                   ),
                 ),
+                SizedBox(width: 5),
+                Expanded(
+                  child: FormBuilderTextField(
+                    name: 'comentario9',
+                    // controller: comentario9,
+                    decoration: InputDecoration(labelText: 'Comentario9'),
+                    initialValue: comentario9.text,
+                    onChanged: (value) {
+                      setState(() {
+                        comentario9.text = value!;
+                      });
+                    },
+                  ),
+                ),
               ],
             ),
             Row(
@@ -668,302 +795,6 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                     },
                   ),
                 ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'lote1',
-                    controller: lote1,
-                    decoration: InputDecoration(labelText: 'Lote1'),
-                    // initialValue: lote1.text,
-                    onChanged: (value) {
-                      setState(() {
-                        lote1.text = value!;
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(width: 5),
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'comentario1',
-                    // controller: comentario1,
-                    decoration: InputDecoration(labelText: 'Comentario1'),
-                    initialValue: comentario1.text,
-                    onChanged: (value) {
-                      setState(() {
-                        comentario1.text = value!;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'lote2',
-                    controller: lote2,
-                    decoration: InputDecoration(labelText: 'Lote2'),
-                    // initialValue: lote2.text,
-                    onChanged: (value) {
-                      setState(() {
-                        lote2.text = value!;
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(width: 5),
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'comentario2',
-                    // controller: comentario2,
-                    decoration: InputDecoration(labelText: 'Comentario2'),
-                    initialValue: comentario2.text,
-                    onChanged: (value) {
-                      setState(() {
-                        comentario2.text = value!;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'lote3',
-                    controller: lote3,
-                    decoration: InputDecoration(labelText: 'Lote3'),
-                    // initialValue: lote3.text,
-                    onChanged: (value) {
-                      setState(() {
-                        lote3.text = value!;
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(width: 5),
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'comentario3',
-                    // controller: comentario3,
-                    decoration: InputDecoration(labelText: 'Comentario3'),
-                    initialValue: comentario3.text,
-                    onChanged: (value) {
-                      setState(() {
-                        comentario3.text = value!;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'lote4',
-                    controller: lote4,
-                    decoration: InputDecoration(labelText: 'Lote4'),
-                    // initialValue: lote4.text,
-                    onChanged: (value) {
-                      setState(() {
-                        lote4.text = value!;
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(width: 5),
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'comentario4',
-                    // controller: comentario4,
-                    decoration: InputDecoration(labelText: 'Comentario4'),
-                    initialValue: comentario4.text,
-                    onChanged: (value) {
-                      setState(() {
-                        comentario4.text = value!;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'lote5',
-                    controller: lote5,
-                    decoration: InputDecoration(labelText: 'Lote5'),
-                    // initialValue: lote5.text,
-                    onChanged: (value) {
-                      setState(() {
-                        lote5.text = value!;
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(width: 5),
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'comentario5',
-                    // controller: comentario5,
-                    decoration: InputDecoration(labelText: 'Comentario5'),
-                    initialValue: comentario5.text,
-                    onChanged: (value) {
-                      setState(() {
-                        comentario5.text = value!;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'lote6',
-                    controller: lote6,
-                    decoration: InputDecoration(labelText: 'Lote6'),
-                    // initialValue: lote6.text,
-                    onChanged: (value) {
-                      setState(() {
-                        lote6.text = value!;
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(width: 5),
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'comentario6',
-                    // controller: comentario6,
-                    decoration: InputDecoration(labelText: 'Comentario6'),
-                    initialValue: comentario6.text,
-                    onChanged: (value) {
-                      setState(() {
-                        comentario6.text = value!;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'lote7',
-                    controller: lote7,
-                    decoration: InputDecoration(labelText: 'Lote7'),
-                    // initialValue: lote7.text,
-                    onChanged: (value) {
-                      setState(() {
-                        lote7.text = value!;
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(width: 5),
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'comentario7',
-                    // controller: comentario7,
-                    decoration: InputDecoration(labelText: 'Comentario7'),
-                    initialValue: comentario7.text,
-                    onChanged: (value) {
-                      setState(() {
-                        comentario7.text = value!;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'lote8',
-                    controller: lote8,
-                    decoration: InputDecoration(labelText: 'Lote8'),
-                    // initialValue: lote8.text,
-                    onChanged: (value) {
-                      setState(() {
-                        lote8.text = value!;
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(width: 5),
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'comentario8',
-                    // controller: comentario8,
-                    decoration: InputDecoration(labelText: 'Comentario8'),
-                    initialValue: comentario8.text,
-                    onChanged: (value) {
-                      setState(() {
-                        comentario8.text = value!;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'lote9',
-                    controller: lote9,
-                    decoration: InputDecoration(labelText: 'Lote9'),
-                    // initialValue: lote9.text,
-                    onChanged: (value) {
-                      setState(() {
-                        lote9.text = value!;
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(width: 5),
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'comentario9',
-                    // controller: comentario9,
-                    decoration: InputDecoration(labelText: 'Comentario9'),
-                    initialValue: comentario9.text,
-                    onChanged: (value) {
-                      setState(() {
-                        comentario9.text = value!;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'lote10',
-                    controller: lote10,
-                    decoration: InputDecoration(labelText: 'Lote10'),
-                    // initialValue: lote10.text,
-                    onChanged: (value) {
-                      setState(() {
-                        lote10.text = value!;
-                      });
-                    },
-                  ),
-                ),
                 SizedBox(width: 5),
                 Expanded(
                   child: FormBuilderTextField(
@@ -980,11 +811,321 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                 ),
               ],
             ),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'lote1',
+            //         controller: lote1,
+            //         decoration: InputDecoration(labelText: 'Lote1'),
+            //         // initialValue: lote1.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             lote1.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //     SizedBox(width: 5),
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'comentario1',
+            //         // controller: comentario1,
+            //         decoration: InputDecoration(labelText: 'Comentario1'),
+            //         initialValue: comentario1.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             comentario1.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'lote2',
+            //         controller: lote2,
+            //         decoration: InputDecoration(labelText: 'Lote2'),
+            //         // initialValue: lote2.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             lote2.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //     SizedBox(width: 5),
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'comentario2',
+            //         // controller: comentario2,
+            //         decoration: InputDecoration(labelText: 'Comentario2'),
+            //         initialValue: comentario2.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             comentario2.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'lote3',
+            //         controller: lote3,
+            //         decoration: InputDecoration(labelText: 'Lote3'),
+            //         // initialValue: lote3.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             lote3.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //     SizedBox(width: 5),
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'comentario3',
+            //         // controller: comentario3,
+            //         decoration: InputDecoration(labelText: 'Comentario3'),
+            //         initialValue: comentario3.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             comentario3.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'lote4',
+            //         controller: lote4,
+            //         decoration: InputDecoration(labelText: 'Lote4'),
+            //         // initialValue: lote4.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             lote4.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //     SizedBox(width: 5),
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'comentario4',
+            //         // controller: comentario4,
+            //         decoration: InputDecoration(labelText: 'Comentario4'),
+            //         initialValue: comentario4.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             comentario4.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'lote5',
+            //         controller: lote5,
+            //         decoration: InputDecoration(labelText: 'Lote5'),
+            //         // initialValue: lote5.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             lote5.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //     SizedBox(width: 5),
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'comentario5',
+            //         // controller: comentario5,
+            //         decoration: InputDecoration(labelText: 'Comentario5'),
+            //         initialValue: comentario5.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             comentario5.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'lote6',
+            //         controller: lote6,
+            //         decoration: InputDecoration(labelText: 'Lote6'),
+            //         // initialValue: lote6.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             lote6.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //     SizedBox(width: 5),
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'comentario6',
+            //         // controller: comentario6,
+            //         decoration: InputDecoration(labelText: 'Comentario6'),
+            //         initialValue: comentario6.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             comentario6.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'lote7',
+            //         controller: lote7,
+            //         decoration: InputDecoration(labelText: 'Lote7'),
+            //         // initialValue: lote7.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             lote7.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //     SizedBox(width: 5),
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'comentario7',
+            //         // controller: comentario7,
+            //         decoration: InputDecoration(labelText: 'Comentario7'),
+            //         initialValue: comentario7.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             comentario7.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'lote8',
+            //         controller: lote8,
+            //         decoration: InputDecoration(labelText: 'Lote8'),
+            //         // initialValue: lote8.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             lote8.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //     SizedBox(width: 5),
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'comentario8',
+            //         // controller: comentario8,
+            //         decoration: InputDecoration(labelText: 'Comentario8'),
+            //         initialValue: comentario8.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             comentario8.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'lote9',
+            //         controller: lote9,
+            //         decoration: InputDecoration(labelText: 'Lote9'),
+            //         // initialValue: lote9.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             lote9.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //     SizedBox(width: 5),
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'comentario9',
+            //         // controller: comentario9,
+            //         decoration: InputDecoration(labelText: 'Comentario9'),
+            //         initialValue: comentario9.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             comentario9.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'lote10',
+            //         controller: lote10,
+            //         decoration: InputDecoration(labelText: 'Lote10'),
+            //         // initialValue: lote10.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             lote10.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //     SizedBox(width: 5),
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'comentario10',
+            //         // controller: comentario10,
+            //         decoration: InputDecoration(labelText: 'Comentario10'),
+            //         initialValue: comentario10.text,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             comentario10.text = value!;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),
       actions: <Widget>[
-        Expanded(
+        Container(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: TextButton(

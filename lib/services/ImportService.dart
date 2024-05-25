@@ -8,15 +8,16 @@ import 'package:http/http.dart' as http;
 
 class ImportService {
   static apiURL() {
-    return 'http://192.168.1.3:8000/api/';
-//     return 'https://bsofia.siscenter.org/api/';
+    return dotenv.env['API_BACK'];
   }
 
   Future users() async {
     var usersBox = await Hive.openBox<User>('users');
     // await usersBox.put(1,User(id: 1, name: 'Juan'));
     if (usersBox.isEmpty) {
-      // print(apiURL());
+      // print('AAA');
+      // print(apiURL()+ 'users');
+      // print(Uri.parse(apiURL() + 'users'));
       var response = await http.get(Uri.parse(apiURL() + 'users'));
       if (response.statusCode == 200) {
         var data = json.decode(response.body);
