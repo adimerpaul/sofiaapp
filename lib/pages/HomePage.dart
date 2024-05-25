@@ -27,11 +27,12 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     getUsers();
-    verifiLogin();
+    // verifiLogin();
   }
   void verifiLogin() async {
     var userBox = await Hive.openBox<User>('user');
-    if(userBox.isNotEmpty){
+    var user = userBox.get(1);
+    if(user != null){
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => AlmacenPage()),
@@ -201,6 +202,27 @@ class _HomePageState extends State<HomePage> {
                 child: _loading ? CircularProgressIndicator() : Text('Importar', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18)),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
+                  // onSurface: Colors.grey,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 15),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SizedBox(
+              width: double.infinity, // Ancho completo
+              height: 60.0, // Altura deseada
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AlmacenPage()),
+                  );
+                },
+                child: Text('Ver Almacen', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18)),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
                   // onSurface: Colors.grey,
                 ),
               ),

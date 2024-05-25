@@ -100,9 +100,11 @@ class _AlmacenPageState extends State<AlmacenPage> {
             // Botón para confirmar el cierre de sesión
             TextButton(
               child: Text('Aceptar'),
-              onPressed: () {
-                var almacenBox = Hive.box<Almacen>('almacen');
+              onPressed: () async {
+                var almacenBox = await Hive.box<Almacen>('almacen');
                 almacenBox.deleteAll(almacenBox.keys);
+                var userBox = await Hive.openBox<User>('user');
+                userBox.deleteAll(userBox.keys);
                 Navigator.of(context).pop(); // Cerrar el diálogo
                 Navigator.pop(context); // Cerrar la página actual
               },
