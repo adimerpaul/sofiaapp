@@ -366,6 +366,17 @@ class _AlmacenPageState extends State<AlmacenPage> {
                                   ),),
                                 ),
                               ),
+                              //diferencia
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text('Diferencia: '),
+                              Text((almacen[index].saldo! - almacen[index].cantidad!).toString(),style: TextStyle(
+                                color: Colors.red ,
+                                fontWeight: FontWeight.w900, // Aquí puedes ajustar el valor de FontWeight
+                                fontSize: 13,
+                              ),),
                             ],
                           ),
                         ],
