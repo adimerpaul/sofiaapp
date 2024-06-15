@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive/hive.dart';
 
+
 class AlmacenPage extends StatefulWidget {
   const AlmacenPage({super.key});
 
