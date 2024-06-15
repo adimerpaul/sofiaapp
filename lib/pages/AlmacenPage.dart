@@ -249,7 +249,11 @@ class _AlmacenPageState extends State<AlmacenPage> {
                   onChanged: (value) {
                     // print(value);
                     setState(() {
+                      //filtrar nombre y codigo de producto
                       almacen = almacenAll.where((element) => element.producto!.toLowerCase().contains(value.toLowerCase())).toList();
+                      almacen += almacenAll.where((element) => element.codigoProducto!.toLowerCase().contains(value.toLowerCase())).toList();
+                      almacen = almacen.toSet().toList();
+
                     });
                   },
                 ),
@@ -283,33 +287,46 @@ class _AlmacenPageState extends State<AlmacenPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 3, vertical: 2), // Ajusta el padding del Container
-                                  decoration: BoxDecoration(
-                                    color: almacen[index].estado == 'PENDIENTE' ? Colors.red : Colors.green, // Establece el color de fondo del Container según el estado
-                                    borderRadius: BorderRadius.circular(3), // Ajusta el radio de borde del Container
-                                  ),
-                                  child: Text(
-                                    almacen[index].estado!.trim(),
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13, // Ajusta el tamaño del texto del Chip
-                                    ),
+                          Row(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 3, vertical: 2), // Ajusta el padding del Container
+                                decoration: BoxDecoration(
+                                  color: almacen[index].estado == 'PENDIENTE' ? Colors.red : Colors.green, // Establece el color de fondo del Container según el estado
+                                  borderRadius: BorderRadius.circular(3), // Ajusta el radio de borde del Container
+                                ),
+                                child: Text(
+                                  almacen[index].estado!.trim(),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13, // Ajusta el tamaño del texto del Chip
                                   ),
                                 ),
-                                Text(
-                                  (index+1).toString()+' '+almacen[index].producto!.trim()+ ' ' ,style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
-                                  fontSize: 13,
-                                ),),
-                              ],
-                            ),
+                              ),
+
+                            ],
+                          ),
+                          Text(
+                            (index+1).toString()+' '+almacen[index].producto!.trim()+ ' ' ,style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
+                            fontSize: 13,
+                          ),),
+                          Row(
+                            children: [
+                              Text('Codigo: ',style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
+                                fontSize: 13,
+                              ),),
+                              Text(
+                                almacen[index].codigoProducto!.trim()+ ' ' ,style: TextStyle(
+                                color: Colors.purple,
+                                fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
+                                fontSize: 13,
+                              ),),
+                            ],
                           ),
                           Text('Grupo: ' +almacen[index].grupo!.trim(),style: TextStyle(
                             color: Colors.black,

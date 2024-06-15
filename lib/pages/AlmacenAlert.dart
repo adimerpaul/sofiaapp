@@ -196,16 +196,36 @@ class _AlmacenAlertState extends State<AlmacenAlert> {
                       fontSize: 12,
                     ),
                   ),
-                  SizedBox(width: 5), // Añade un espacio entre el texto 'Producto:' y el contenido del producto
-                  Text(
-                    widget.almacen.producto.toString(),
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 12,
-                    ),
-                  ),
+                  // SizedBox(width: 5), // Añade un espacio entre el texto 'Producto:' y el contenido del producto
                 ],
               ),
+            ),
+            Text(
+              widget.almacen.producto.toString(),
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 12,
+              ),
+            ),
+            Row(
+              children: [
+                Text('Codigo : ',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold, // Aquí puedes ajustar el valor de FontWeight
+                    fontSize: 12,
+                  ),
+                ),
+                Text(
+                  widget.almacen.codigoProducto.toString(),
+                  style: TextStyle(
+                    color: Colors.purple,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold, // bold
+                    // bold
+                  ),
+                ),
+              ],
             ),
             Row(children: [Text('Saldo: ',style: TextStyle(
               color: Colors.black,
