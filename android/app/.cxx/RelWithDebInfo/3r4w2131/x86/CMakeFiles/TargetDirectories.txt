@@ -1,0 +1,2 @@
+C:/android/sofiaapp/android/app/.cxx/RelWithDebInfo/3r4w2131/x86/CMakeFiles/edit_cache.dir
+C:/android/sofiaapp/android/app/.cxx/RelWithDebInfo/3r4w2131/x86/CMakeFiles/rebuild_cache.dir
